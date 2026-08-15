@@ -1,11 +1,28 @@
-import Form from "./Form";
-function App() {
+import { useLocalStorage } from '../hooks/useLocalStorage.js';
+
+export default function Form() {
+  const [name, setName] = useLocalStorage('name', '');
+  const [serviceNumber, setServiceNumber] = useLocalStorage('serviceNumber', '');
+
   return (
-    <div>
-      <h2>Service Form</h2>
-      <Form />
-    </div>
+    <form className="repair-form">
+      <label htmlFor="name">Name</label>
+      <input
+        id="name"
+        data-testid="name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <label htmlFor="serviceNumber">Service Number</label>
+      <input
+        id="serviceNumber"
+        data-testid="serviceNumber"
+        type="text"
+        value={serviceNumber}
+        onChange={(e) => setServiceNumber(e.target.value)}
+      />
+    </form>
   );
 }
-
-export default App
